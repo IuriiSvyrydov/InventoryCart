@@ -35,7 +35,7 @@ public abstract class Entity
 
     }
 
-    public void AddEvent(IDomainEvent domainEvent)
+    public void AddDomainEvent(IDomainEvent domainEvent)
     {
         _domainEvents.Add(domainEvent);
     }

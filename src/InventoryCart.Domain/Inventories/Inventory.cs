@@ -1,11 +1,11 @@
 ﻿using InventoryCart.Domain.Abstractions;
+using InventoryCart.Domain.Inventories.Events;
 using InventoryCart.Domain.Products;
 
 namespace InventoryCart.Domain.Inventories;
 
 public sealed class Inventory: Entity
 {
-   
     public Quantity Quantity { get; private set; }
     public RecorderLevel RecorderLevel { get; private set; }
     public Location Location { get; private set; }
@@ -16,7 +16,7 @@ public sealed class Inventory: Entity
 
     private Inventory()
     {
-        
+    
     }
 
     public Inventory(Guid id, 
@@ -33,5 +33,13 @@ public sealed class Inventory: Entity
         Location = location;
         LastUpdated = lastUpdated;
         Products = products;
+    }
+    public static Inventory Creatre(Guid productId,Quantity quantity,RecorderLevel recorderLevel,
+        Location location,DateTimeOffset lastUpdated,List<Product>products)
+    {
+        var inventory = new Inventory(Guid.NewGuid(),productId,quantity,recorderLevel,location,lastUpdated,products);
+        inventory.AddDomainEvent(new CreateInventoryDomainEvent(inventory.Id));
+        return inventory;
+
     }
 }
