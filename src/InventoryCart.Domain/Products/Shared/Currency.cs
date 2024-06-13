@@ -21,6 +21,6 @@ public record Currency
 
     public static Money Zero() => new Money(0, None);
 
-    public static Currency FromZero(string code) => All.FirstOrDefault(x => x.Code == code) ??
+    public static Currency FromCode(string code) => All.FirstOrDefault(x => x.Code == code) ??
                                                     throw new ApplicationException("The currency code is invalid");
 };

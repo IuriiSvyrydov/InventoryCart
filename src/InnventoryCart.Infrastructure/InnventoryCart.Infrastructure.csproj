@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InventoryCart.Application\InventoryCart.Application.csproj" />
     <ProjectReference Include="..\InventoryCart.Domain\InventoryCart.Domain.csproj" />
   </ItemGroup>
 

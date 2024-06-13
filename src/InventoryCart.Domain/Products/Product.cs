@@ -68,6 +68,6 @@ public sealed class Product: Entity
             width, height, categories, taxCost, profitPerUnit, productionCost);
         product.AddDomainEvent(new CreateProductDomainEvent(product.Id));
         return product;
-      
+
     }
 }

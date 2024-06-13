@@ -1,4 +1,5 @@
 ﻿using InventoryCart.Domain.Abstractions;
+using InventoryCart.Domain.Categories.Events;
 using InventoryCart.Domain.Products;
 
 namespace InventoryCart.Domain.Categories;
@@ -8,7 +9,7 @@ public sealed class Category : Entity
     #region Properties
     public Name Name { get; private set; }
     public Description Description { get; private set; }
-public List<Product> Products { get; private set; }
+    public List<Product> Products { get; private set; }
 
     #endregion
 
@@ -24,9 +25,11 @@ public List<Product> Products { get; private set; }
         Products = products;
     }
 
-    public static Result<Category> Create()
+    public static Category Create(Name name, Description description,List<Product>products)
     {
-        return null;
+        var category = new Category(Guid.NewGuid(), name, description, products);
+        category.AddDomainEvent(new CreateCategoryDomainEvent(category.Id));
+        return category;
     }
     #endregion
 
